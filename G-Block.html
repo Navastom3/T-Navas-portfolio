@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>G-Block Live Sessions | Tomas Navas</title>
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background:
+
+        radial-gradient(circle at 20% 20%, rgba(91, 33, 182, 0.42), transparent 35%),
+
+        radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.20), transparent 38%),
+
+        linear-gradient(135deg, #050505 0%, #14001b 45%, #050505 100%);
+
+      background-size: 180% 180%;
+
+      animation: backgroundShift 12s ease-in-out infinite alternate;
+
+      color: white;
+
+      overflow-x: hidden;
+
+    }
+
+    @keyframes backgroundShift {
+
+      0% {
+
+        background-position: 0% 0%;
+
+      }
+
+      50% {
+
+        background-position: 70% 40%;
+
+      }
+
+      100% {
+
+        background-position: 100% 100%;
+
+      }
+
+    }
+
+    @keyframes laserPulse {
+
+      0% {
+
+        opacity: 0.68;
+
+        filter: blur(0px);
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        filter: blur(1px);
+
+      }
+
+    }
+
+    .page {
+
+      width: min(1200px, 90%);
+
+      margin: auto;
+
+      position: relative;
+
+    }
+
+    .back-link {
+
+      position: fixed;
+
+      top: 24px;
+
+      left: 24px;
+
+      z-index: 50;
+
+      color: white;
+
+      text-decoration: none;
+
+      border: 1px solid rgba(34, 197, 94, 0.55);
+
+      padding: 10px 16px;
+
+      border-radius: 999px;
+
+      background: rgba(0, 0, 0, 0.65);
+
+      backdrop-filter: blur(8px);
+
+      transition: 0.2s;
+
+    }
+
+    .back-link:hover {
+
+      color: #22c55e;
+
+      border-color: #22c55e;
+
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+
+    }
+
+    .top-label {
+
+      position: fixed;
+
+      top: 30px;
+
+      right: 34px;
+
+      z-index: 50;
+
+      color: #ef4444;
+
+      letter-spacing: 3px;
+
+      font-weight: bold;
+
+      font-size: 14px;
+
+    }
+
+    .hero {
+
+      min-height: 90vh;
+
+      display: flex;
+
+      align-items: center;
+
+      position: relative;
+
+      padding-top: 70px;
+
+    }
+
+    .hero::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+
+      right: 20%;
+
+      width: 5px;
+
+      height: 100%;
+
+      background: linear-gradient(
+
+        to bottom,
+
+        transparent,
+
+        #22c55e,
+
+        #bbf7d0,
+
+        #22c55e,
+
+        transparent
+
+      );
+
+      box-shadow:
+
+        0 0 10px #bbf7d0,
+
+        0 0 25px #22c55e,
+
+        0 0 55px rgba(34, 197, 94, 0.9),
+
+        0 0 100px rgba(34, 197, 94, 0.45);
+
+      opacity: 0.85;
+
+      animation: laserPulse 2.2s ease-in-out infinite alternate;
+
+    }
+
+    .kicker {
+
+      color: #ef4444;
+
+      font-weight: bold;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 18px;
+
+      text-transform: uppercase;
+
+    }
+
+    .hero h1 {
+
+      font-size: clamp(54px, 9vw, 120px);
+
+      line-height: 0.9;
+
+      letter-spacing: -4px;
+
+      margin-bottom: 28px;
+
+    }
+
+    .green {
+
+      color: #8cff5a;
+
+      text-shadow:
+
+        0 0 20px rgba(34, 197, 94, 0.75),
+
+        0 0 45px rgba(34, 197, 94, 0.45);
+
+    }
+
+    .hero p {
+
+      color: #d4d4d4;
+
+      font-size: 20px;
+
+      max-width: 650px;
+
+      line-height: 1.7;
+
+    }
+
+   .band-intro {
+
+  position: relative;
+
+  z-index: 3;
+
+  display: grid;
+
+  grid-template-columns: 1.4fr 0.65fr;
+
+  gap: 50px;
+
+  align-items: center;
+
+  margin-bottom: 120px;
+
+  padding: 34px;
+
+  border: 1px solid rgba(34, 197, 94, 0.35);
+
+  border-radius: 24px;
+
+  background: rgba(5, 5, 5, 0.65);
+
+  box-shadow:
+
+    0 0 28px rgba(34, 197, 94, 0.12),
+
+    inset 0 0 38px rgba(91, 33, 182, 0.12);
+
+}
+
+.band-intro-text h2 {
+
+  font-size: clamp(34px, 5vw, 58px);
+
+  margin-bottom: 20px;
+
+}
+
+.band-intro-text p {
+
+  color: #cfcfcf;
+
+  line-height: 1.8;
+
+  font-size: 17px;
+
+}
+
+.band-intro-img {
+
+  width: 100%;
+
+  max-width: 380px;
+
+  justify-self: center;
+
+}
+
+.band-intro-img img {
+
+  width: 100%;
+
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+
+  display: block;
+
+  border-radius: 18px;
+
+  border: 1px solid rgba(140, 255, 90, 0.35);
+
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.16);
+
+  filter: contrast(1.06) saturate(0.95) brightness(0.9);
+
+  transition: 0.25s ease;
+
+}
+
+.band-intro-img img:hover {
+
+  transform: scale(1.02);
+
+  box-shadow: 0 0 34px rgba(34, 197, 94, 0.28);
+
+}
+
+    .sessions {
+
+      position: relative;
+
+      padding: 40px 0 140px;
+
+    }
+
+    .laser-path {
+
+      position: absolute;
+
+      top: 30px;
+
+      left: 48%;
+
+      width: 5px;
+
+      height: calc(100% - 180px);
+
+      background: linear-gradient(
+
+        to bottom,
+
+        transparent,
+
+        #22c55e 6%,
+
+        #bbf7d0 15%,
+
+        #22c55e 35%,
+
+        #22c55e 68%,
+
+        #bbf7d0 82%,
+
+        transparent
+
+      );
+
+      box-shadow:
+
+        0 0 10px #bbf7d0,
+
+        0 0 25px #22c55e,
+
+        0 0 55px rgba(34, 197, 94, 0.9),
+
+        0 0 100px rgba(34, 197, 94, 0.45);
+
+      z-index: 0;
+
+      animation: laserPulse 2.2s ease-in-out infinite alternate;
+
+    }
+
+    .session-row {
+
+      position: relative;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns: 1.25fr 0.9fr;
+
+      gap: 70px;
+
+      align-items: center;
+
+      margin-bottom: 95px;
+
+    }
+
+    .session-row.reverse {
+
+      grid-template-columns: 0.9fr 1.25fr;
+
+    }
+
+    .session-row.reverse .image-card {
+
+      grid-column: 2;
+
+    }
+
+    .session-row.reverse .info-card {
+
+      grid-column: 1;
+
+      grid-row: 1;
+
+    }
+
+    .session-row::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 50%;
+
+      left: 42%;
+
+      width: 17%;
+
+      height: 3px;
+
+      background: #22c55e;
+
+      box-shadow:
+
+        0 0 10px #bbf7d0,
+
+        0 0 24px #22c55e,
+
+        0 0 50px rgba(34, 197, 94, 0.6);
+
+      opacity: 0.95;
+
+      z-index: -1;
+
+      animation: laserPulse 2s ease-in-out infinite alternate;
+
+    }
+
+    .session-row.reverse::after {
+
+      left: 41%;
+
+      width: 18%;
+
+    }
+
+    .image-card,
+
+    .info-card {
+
+      background: rgba(8, 8, 8, 0.78);
+
+      border: 1px solid rgba(34, 197, 94, 0.55);
+
+      box-shadow:
+
+        0 0 20px rgba(34, 197, 94, 0.14),
+
+        inset 0 0 30px rgba(34, 197, 94, 0.05);
+
+      position: relative;
+
+    }
+
+    .image-card {
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      aspect-ratio: 16 / 9;
+
+    }
+
+    .image-card img,
+
+.image-card video {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+}
+
+    .image-card::before,
+
+    .info-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0px;
+
+      border: 1px solid rgba(140, 255, 90, 0.28);
+
+      pointer-events: none;
+
+      z-index: 3;
+
+    }
+
+    .laser-dot {
+
+      position: absolute;
+
+      top: -10px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 20px;
+
+      height: 20px;
+
+      border-radius: 50%;
+
+      background: #dcfce7;
+
+      box-shadow:
+
+        0 0 12px #bbf7d0,
+
+        0 0 30px #22c55e,
+
+        0 0 70px rgba(34, 197, 94, 0.95);
+
+      z-index: 5;
+
+    }
+
+    .info-card {
+
+      border-radius: 16px;
+
+      padding: 34px;
+
+      min-height: 270px;
+
+    }
+
+    .number {
+
+      width: 52px;
+
+      height: 52px;
+
+      border: 1px solid #22c55e;
+
+      color: #8cff5a;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      font-weight: bold;
+
+      margin-bottom: 22px;
+
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.35);
+
+    }
+
+    .info-card h2 {
+
+      font-size: 30px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .info-card h3 {
+
+      color: #8cff5a;
+
+      font-size: 14px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 22px;
+
+      text-transform: uppercase;
+
+    }
+
+    .small-line {
+
+      width: 45px;
+
+      height: 2px;
+
+      background: #22c55e;
+
+      margin-bottom: 22px;
+
+      box-shadow: 0 0 12px #22c55e;
+
+    }
+
+    .info-card p {
+
+      color: #cfcfcf;
+
+      line-height: 1.7;
+
+      font-size: 16px;
+
+    }
+
+    .listen-link {
+
+      display: inline-block;
+
+      margin-top: 24px;
+
+      color: #8cff5a;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+    }
+
+    .listen-link:hover {
+
+      text-shadow: 0 0 18px #22c55e;
+
+    }
+
+    .video-section {
+
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 120px;
+
+      padding-top: 90px;
+
+      border-top: 1px solid rgba(34, 197, 94, 0.25);
+
+    }
+
+    .video-header {
+
+      max-width: 760px;
+
+      margin-bottom: 50px;
+
+    }
+
+    .video-header h2 {
+
+      font-size: clamp(38px, 6vw, 72px);
+
+      margin-bottom: 18px;
+
+    }
+
+    .video-header p {
+
+      color: #cfcfcf;
+
+      line-height: 1.7;
+
+      font-size: 18px;
+
+    }
+
+    .video-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 28px;
+
+}
+
+.video-pair {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 28px;
+
+  margin-top: 28px;
+
+}
+
+.video-card {
+
+  background: rgba(8, 8, 8, 0.78);
+
+  border: 1px solid rgba(34, 197, 94, 0.5);
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+}
+
+    .video-card {
+
+      background: rgba(8, 8, 8, 0.78);
+
+      border: 1px solid rgba(34, 197, 94, 0.5);
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      box-shadow:
+
+        0 0 20px rgba(34, 197, 94, 0.12),
+
+        inset 0 0 28px rgba(34, 197, 94, 0.04);
+
+      transition: 0.2s;
+
+    }
+
+    .video-card:hover {
+
+      border-color: #22c55e;
+
+      box-shadow:
+
+        0 0 28px rgba(34, 197, 94, 0.25),
+
+        inset 0 0 28px rgba(34, 197, 94, 0.06);
+
+      transform: translateY(-4px);
+
+    }
+
+    .video-frame {
+
+      aspect-ratio: 16 / 9;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(140, 255, 90, 0.3);
+
+      margin-bottom: 18px;
+
+      background: #000;
+
+    }
+
+    .video-frame iframe,
+
+    .video-frame video {
+
+      width: 100%;
+
+      height: 100%;
+
+      border: 0;
+
+      display: block;
+
+      object-fit: cover;
+
+    }
+
+.video-frame.solo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-frame.solo-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+  background: #000;
+}
+
+.video-card h3 {
+
+      font-size: 22px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .video-card p {
+
+      color: #a3a3a3;
+
+      line-height: 1.6;
+
+    }
+
+    @media (max-width: 900px) {
+
+      .hero::before,
+
+      .laser-path,
+
+      .session-row::after {
+
+        display: none;
+
+      }
+
+      .top-label {
+
+        display: none;
+
+      }
+
+      .hero {
+
+        min-height: 75vh;
+
+      }
+
+      .hero h1 {
+
+        letter-spacing: -2px;
+
+      }
+
+      .band-intro {
+
+        grid-template-columns: 1fr;
+
+        padding: 22px;
+
+        margin-bottom: 70px;
+
+      }
+
+      .session-row,
+
+      .session-row.reverse {
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        margin-bottom: 60px;
+
+      }
+
+      .session-row.reverse .image-card,
+
+      .session-row.reverse .info-card {
+
+        grid-column: auto;
+
+        grid-row: auto;
+
+      }
+
+      .info-card {
+
+        min-height: auto;
+
+      }
+
+      .video-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .video-section {
+
+        margin-top: 70px;
+
+        padding-top: 60px;
+
+      }
+
+      .back-link {
+
+        position: absolute;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <a class="back-link" href="index.html">← Back to Home</a>
+
+  <div class="top-label">G-BLOCK ◎</div>
+
+  <main class="page">
+
+    <section class="hero">
+
+      <div>
+
+        <div class="kicker">Music</div>
+
+        <h1>
+
+          G-BLOCK<br />
+
+          <span class="green">LIVE BAND</span>
+
+        </h1>
+
+        <p>
+
+          Three of our favorite sessions as a band, including our own song
+
+          “Paradise,” recorded in the studio.
+
+        </p>
+
+      </div>
+
+    </section>
+
+<section class="band-intro">
+
+  <div class="band-intro-text">
+
+    <div class="kicker">The Band</div>
+
+    <h2>What was G-Block?</h2>
+
+    <p>
+
+      G-Block was a year-long music class made up of selected top music students
+
+      from my high school. Throughout the year, we start developping chemistry and getting the ropes with covers, representing our school in competitions
+
+       and diverse events and all leading up to the writing of our original song, "Paradise"
+
+        to end up recording it along with our band's pick songs at the end of the year .”
+
+      <br><br>
+
+      It became one more space where I experienced what it feels like to
+
+      build something creative with a team over time. The band taught me collaboration,
+
+      improvisation, stage presence, the importance of showing up regularly and mindfully, and how much better ideas can
+
+      become when people build on each other’s strengths.
+
+    </p>
+
+  </div>
+
+  <div class="band-intro-img">
+
+    <img src="assets/images/gblock-rockbattle.jpg" alt="G-Block Rock Battle poster">
+
+  </div>
+
+</section>
+
+    <section class="sessions">
+
+      <div class="laser-path"></div>
+
+      <div class="session-row">
+
+        <div class="image-card">
+
+          <div class="laser-dot"></div>
+
+          <img src="assets/images/gblock-1.jpg" alt="G-Block Paradise studio session" />
+
+        </div>
+
+        <div class="info-card">
+
+          <div class="number">01</div>
+
+          <h2>Paradise</h2>
+
+          <h3>The final product</h3>
+
+          <div class="small-line"></div>
+
+          <p>
+
+            Our original song, “Paradise,” written and recorded by the band, was the culmination of our year together.
+
+It blends rock, pop, and funk influences with catchy hooks, energetic fills, and dynamic arrangements.
+
+ Looking back, we agreed that we were most proud of isn't any individual part of the song—it's the fact that it genuinely sounds like us.
+
+ More than anything, the process showed us how much better an idea can become when everyone contributes to building it and listens to each other.
+
+          </p>
+
+          <a class="listen-link" href="https://www.youtube.com/watch?app=desktop&v=HwEKOFvrbys&feature=youtu.be" target="_blank">Listen →</a>
+
+        </div>
+
+      </div>
+
+      <div class="session-row">
+
+        <div class="image-card">
+
+          <div class="laser-dot"></div>
+
+          <img src="assets/images/gblock-2.jpg" alt="G-Block studio jam session" />
+
+        </div>
+
+        <div class="info-card">
+
+          <div class="number">02</div>
+
+          <h2>Intraschool competitions</h2>
+
+          <h3>representing menor</h3>
+
+          <div class="small-line"></div>
+
+          <p>
+
+           Throughout the year, we represented our school in several interschool music competitions. Beyond the competition itself, these events were a great way to build chemistry as a band and perform in front of new audiences.
+
+At La Birreria, we reached the finals, earned a paid performance opportunity, and I was awarded Best Keyboardist.&#x20;
+
+Later, at UDLA, several members of the band were selected for musical scholarships in recognition of our performances.
+
+ Looking back, these competitions were some of the most rewarding milestones of the year.
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="session-row reverse">
+
+     <div class="image-card">
+
+    <div class="laser-dot"></div>
+
+    <video controls preload="metadata" poster="assets/images/gblock-poster.jpg">
+
+  <source src="assets/videos/gblock-final.mp4" type="video/mp4">
+
+   </video>
+
+</div>
+
+        <div class="info-card">
+
+          <div class="number">03</div>
+
+          <h2>Playing local</h2>
+
+          <h3>School Events</h3>
+
+          <div class="small-line"></div>
+
+          <p>
+
+          As the school's top band, we performed at major school events and concerts, including the annual Choreography Competition.
+
+In front of an audience of more than 1,500 students, families, and alumni,&#x20;
+
+we opened the night with a MIDI mashup spanning over 20 songs that captured the Menor spirit.&#x20;
+
+Our role was to set the energy for the entire event and get the crowd engaged before the main performances began.
+
+          </p>
+
+        </div>
+
+      </div>
+
+<div class="video-section">
+
+  <div class="video-header">
+
+    <div class="kicker">Video</div>
+
+    <h2>G-Block in Motion</h2>
+
+    <p>
+
+      Clips from rehearsals, studio recordings, and live sessions. These videos
+
+      show the band beyond the photos: the sound, timing, energy, and group chemistry.
+
+    </p>
+
+  </div>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+
+      <div class="video-frame">
+
+        <iframe
+
+          src="https://www.youtube.com/embed/JoPTLTqZh4w"
+
+          title="Not For Me Live Session"
+
+            referrerpolicy="strict-origin-when-cross-origin"
+
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+            allowfullscreen>
+
+        </iframe>
+
+      </div>
+
+      <h3>Not For Me Live Session</h3>
+
+      <p>Studio recording session for predecessor G-Block's original song.</p>
+
+    </div>
+
+    <div class="video-card">
+
+      <div class="video-frame">
+
+        <iframe
+
+          src="https://www.youtube.com/embed/BHnxNjuv7EE"
+
+          title="Rock With You Live Session"
+
+            referrerpolicy="strict-origin-when-cross-origin"
+
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+            allowfullscreen>
+
+        </iframe>
+
+      </div>
+
+      <h3>Rock With You — Live Session</h3>
+
+      <p>Live session performing one of Michael Jackson's iconic hits, chosen by the band.</p>
+
+    </div>
+
+<div class="video-card">
+
+<div class="video-frame">
+
+  <video controls poster="assets/images/gblock-rehersal-pic.jpg">
+
+    <source src="assets/videos/g-block-rehersal.MP4" type="video/mp4">
+
+  </video>
+
+</div>
+
+  <h3>POV: You Are in G-Block</h3>
+
+  <p>Clip from one of our rehearsals.</p>
+
+</div>
+
+<div class="video-card">
+
+  <div class="video-frame solo-frame">
+
+    <video controls poster="assets/images/gblock-rehersal-pic.jpg">
+
+      <source src="assets/videos/oye-sabina.MP4" type="video/mp4">
+
+    </video>
+
+  </div>
+
+  <h3>Going solo</h3>
+
+  <p>Nowadays, I use music more as a hobby than anything, some times casually writing piano or guitar songs.&#x20;
+
+    "Oye sabina" in collaboration with Fran Montes :.</p>
+
+</div>
+
+  </div>
+
+</div>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>

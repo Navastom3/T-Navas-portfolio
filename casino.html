@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arduino Casino Machine | Tomas Navas</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.35), transparent 35%),
+        linear-gradient(135deg, #020617 0%, #07111f 45%, #000 100%);
+      color: white;
+    }
+
+    .page {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(59, 130, 246, 0.6);
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .kicker {
+      color: #60a5fa;
+      font-weight: bold;
+      letter-spacing: 5px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(54px, 9vw, 110px);
+      line-height: 0.9;
+      margin-bottom: 24px;
+    }
+
+    .blue {
+      color: #60a5fa;
+      text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    }
+
+    p {
+      color: #d4d4d4;
+      line-height: 1.7;
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .card {
+      background: rgba(8, 8, 8, 0.78);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 28px rgba(59, 130, 246, 0.12);
+    }
+
+    .card h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .media {
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      background: #020617;
+      display: grid;
+      place-items: center;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: #d4d4d4;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr; }
+      .back-link { position: absolute; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="back-link" href="index.html">← Back to Home</a>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="kicker">ARDUINO / HARDWARE</div>
+        <h1>CASINO<br><span class="blue">MACHINE</span></h1>
+        <p>
+          A physical casino-style machine concept using Arduino, buttons, LEDs,
+          probability, randomness, and player feedback.
+        </p>
+      </div>
+    </section>
+
+    <section class="section grid">
+      <div class="card">
+        <h2>Project Overview</h2>
+        <p>
+          This project explores how a simple embedded system can create an interactive
+          experience using physical inputs, outputs, and game logic.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Media</h2>
+        <div class="media">Add image/video here</div>
+      </div>
+    </section>
+
+    <section class="section grid">
+      <div class="card">
+        <h2>Skills Used</h2>
+        <ul>
+          <li>Arduino programming</li>
+          <li>Buttons and LEDs</li>
+          <li>Random number logic</li>
+          <li>Basic circuit design</li>
+          <li>Physical prototyping</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Next Steps</h2>
+        <p>
+          Future versions could include an LCD screen, sound effects, a custom PCB,
+          and a more polished physical enclosure.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

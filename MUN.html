@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model United Nations | Tomas Navas</title>
+
+  <style>
+    :root {
+      --navy: #06375d;
+      --navy-deep: #032b4a;
+      --cyan: #18c7d2;
+      --cyan-soft: #6ce6ea;
+      --white: #f7fbff;
+      --muted: #b9d1df;
+      --line: rgba(108, 230, 234, 0.42);
+      --gold: #d8b45a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* ---------- NAV ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(3, 43, 74, 0.92);
+      border-bottom: 1px solid rgba(108, 230, 234, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      flex: 0 0 auto;
+    }
+
+    .brand-mark svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.35px;
+      font-weight: 700;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--cyan-soft);
+      font-size: 12px;
+      letter-spacing: 0.65px;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .back {
+      text-decoration: none;
+      border: 1px solid var(--cyan);
+      padding: 10px 15px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: 0.2s ease;
+    }
+
+    .back:hover {
+      background: var(--cyan);
+      color: var(--navy-deep);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 86vh;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 90px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 15%, rgba(24, 199, 210, 0.13), transparent 28%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 5px solid var(--cyan);
+      right: -170px;
+      top: 90px;
+      opacity: 0.6;
+      transform: rotate(2deg);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border: 4px solid var(--white);
+      left: -175px;
+      bottom: -125px;
+      opacity: 0.22;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--cyan-soft);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(58px, 8.5vw, 112px);
+      line-height: 0.84;
+      letter-spacing: -5px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1 .cyan {
+      color: var(--cyan);
+    }
+
+    .hero-copy {
+    max-width: 650px;
+    margin-top: 28px;
+    color: var(--muted);
+   font-size: 17px;
+   line-height: 1.8;
+    }
+
+   .hero-copy p {
+   margin-bottom: 18px;
+   }
+
+   .hero-copy p:last-child {
+   margin-bottom: 0;
+   }
+
+    .hero-card-wrap {
+      position: relative;
+      padding: 28px;
+    }
+
+    .hero-card-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0 42px 52px 0;
+      border: 5px solid var(--cyan);
+    }
+
+    .hero-card-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 46px 0 0 48px;
+      border: 4px solid rgba(108, 230, 234, 0.62);
+    }
+
+    .mun-card {
+      position: relative;
+      z-index: 2;
+      min-height: 430px;
+      background: var(--white);
+      color: var(--navy-deep);
+      border: 7px solid var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .mun-card-top {
+      min-height: 330px;
+      background:
+        linear-gradient(145deg, rgba(24,199,210,0.09), rgba(3,43,74,0.02)),
+        var(--white);
+      display: grid;
+      place-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: min(100%, 340px);
+      aspect-ratio: 1170 / 1159;
+      margin: 0 auto 20px;
+      border: 5px solid var(--navy);
+      background: #dce8ef;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      box-shadow: 12px 12px 0 rgba(24, 199, 210, 0.28);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .mun-card-top p {
+      margin-top: 12px;
+      color: #315c77;
+      font-size: 13px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .mun-card-bottom {
+      background: var(--cyan);
+      color: var(--navy-deep);
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .section {
+      padding: 92px 0;
+      position: relative;
+      border-top: 4px solid var(--gold);
+    }
+
+    .section.light {
+      background: var(--white);
+      color: var(--navy-deep);
+    }
+
+    .section-kicker {
+      color: var(--cyan);
+      font-weight: 900;
+      letter-spacing: 3px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .section-copy {
+      max-width: 790px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .light .section-copy {
+      color: #45667b;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 45px;
+    }
+
+    .skill {
+      position: relative;
+      min-height: 250px;
+      padding: 30px;
+      border: 2px solid rgba(6, 55, 93, 0.16);
+      background: #ffffff;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill::before {
+      content: "";
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      right: -18px;
+      top: -18px;
+      border: 4px solid var(--cyan);
+      opacity: 0.65;
+    }
+
+    .skill:hover {
+      transform: translateY(-6px);
+      border-color: var(--cyan);
+    }
+
+    .number {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 45px;
+    }
+
+    .skill h3 {
+      font-size: 27px;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .skill p {
+      color: #4c6d81;
+      line-height: 1.7;
+    }
+
+    .award-card {
+      padding: 0;
+      min-height: 0;
+    }
+
+    .award-card::before {
+      display: none;
+    }
+
+    .award-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #dce8ef;
+      overflow: hidden;
+      border-bottom: 4px solid var(--gold);
+      display: grid;
+      place-items: center;
+    }
+
+    .award-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .award-photo .photo-placeholder {
+      color: #315c77;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .award-content {
+      padding: 26px 28px 30px;
+    }
+
+    .award-content .number {
+      margin-bottom: 18px;
+    }
+
+    .statement {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .big-quote {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+    }
+
+    .big-quote span {
+      color: var(--cyan);
+    }
+
+    .statement-copy {
+      border-left: 4px solid var(--cyan);
+      padding-left: 26px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--cyan);
+      color: var(--navy-deep);
+      padding: 28px 0;
+      border-top: 4px solid var(--gold);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-weight: 800;
+    }
+
+    .footer-inner a {
+      text-decoration: none;
+      border-bottom: 2px solid var(--navy-deep);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .statement {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .hero-card-wrap {
+        max-width: 560px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .brand-copy span {
+        display: none;
+      }
+
+      .back {
+        font-size: 11px;
+        padding: 9px 11px;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero-card-wrap {
+        padding: 14px;
+      }
+
+      .hero-copy p {
+      margin: 0 0 18px 0;
+      }
+
+      .hero-copy p:last-child {
+      margin-bottom: 0;
+     }
+
+      .mun-card {
+        min-height: 360px;
+      }
+
+      .mun-card-top {
+        min-height: 275px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <div class="brand-mark" aria-hidden="true">
+          <!-- UN-style globe and olive branches for the Model UN identity -->
+          <svg viewBox="0 0 64 64" role="img" aria-label="United Nations globe emblem">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="27" r="15.5"/>
+              <ellipse cx="32" cy="27" rx="7.5" ry="15.5"/>
+              <path d="M16.5 27h31M19.5 20.5h25M19.5 33.5h25M32 11.5v31"/>
+              <path d="M18 45c-7-3-10.5-9-10.5-15.5M15 41c-4.5-4-6.5-8.5-6.2-13.5M12.5 36.5c-2.5-3.5-3.4-7-2.8-10.5"/>
+              <path d="M46 45c7-3 10.5-9 10.5-15.5M49 41c4.5-4 6.5-8.5 6.2-13.5M51.5 36.5c2.5-3.5 3.4-7 2.8-10.5"/>
+              <path d="M18 45c4 4 8.7 6 14 6s10-2 14-6"/>
+              <path d="M10.5 31l-3-2M12 35l-3.5-.8M14 39l-3.3.5M53.5 31l3-2M52 35l3.5-.8M50 39l3.3.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <strong>TOMAS NAVAS</strong>
+          <span>MODEL UNITED NATIONS</span>
+        </div>
+      </a>
+
+      <a class="back" href="index.html#beyond-engineering">← BACK TO PORTFOLIO</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">BEYOND ENGINEERING · LEADERSHIP</div>
+          <h1>
+            MODEL<br />
+            <span class="cyan">UNITED</span><br />
+            NATIONS
+          </h1>
+         
+           <div class="hero-copy">
+
+  <p>
+    In Model United Nations, I learned how to structure my ideas and communicate effectively while working within the constraints of my assigned country’s policies and the positions of others.
+  </p>
+
+  <p>
+    I developed strong research skills, learned to consider different perspectives when proposing solutions, and became more comfortable thinking on my feet under time pressure.
+  </p>
+
+  <p>
+    Probably my biggest takeaway, though, was seeing how rewarding it can be to work hard alongside a community of people who are also friends outside of the activity. We shared goals, supported each other however we could, and grew together to the point where I eventually found myself mentoring alongside the same people I had once learned from.
+  </p>
+
+          
+</div>
+          </p>
+        </div>
+
+        <div class="hero-card-wrap" aria-label="Model United Nations profile graphic">
+          <div class="mun-card">
+            <div class="mun-card-top">
+              <div>
+                <div class="profile-photo">
+                  <img src="assets/images/mun-photo.jpg" alt="Model United Nations" />
+                </div>
+                <p>CHAIRING · DEBATE · DIPLOMACY</p>
+              </div>
+            </div>
+            <div class="mun-card-bottom">Model United Nations</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container">
+        <div class="section-kicker">In the comittee</div>
+        <h2 class="section-title">From the New Kid to a familiar face</h2>
+        <p class="section-copy">
+          Across eight national and international Model United Nations conferences in Quito,
+          I competed as a delegate, earned several distinctions, and later moved into committee
+          leadership. These three moments capture that progression.
+        </p>
+
+        <div class="skills-grid">
+          <article class="skill award-card">
+            <div class="award-photo">
+              <img src="assets/images/mun-photo-1.jpg" alt="Tomas Navas participating as a Model United Nations delegate" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <span class="photo-placeholder" style="display:none;">Add delegate photo</span>
+            </div>
+            <div class="award-content">
+              <div class="number">01 / DELEGATE</div>
+              <h3>Competing &amp; debating</h3>
+              <p>
+                My delegate experience included Best Delegate at SEKNU XIX, First Honorable
+                Mention at CAMINU XXX, and First Verbal Mention at EAGLE MUN V.
+              </p>
+            </div>
+          </article>
+
+          <article class="skill award-card">
+            <div class="award-photo">
+              <img src="assets/images/mun-photo-2.jpg" alt="Tomas Navas chairing a Model United Nations committee" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <span class="photo-placeholder" style="display:none;">Add chairing photo</span>
+            </div>
+            <div class="award-content">
+              <div class="number">02 / CHAIRING</div>
+              <h3>Leading the room</h3>
+              <p>
+                I later served as a committee chair for the Organization of American States
+                at COMMNU XXIII and NATO at CAENU XX, moderating debate and guiding delegates.
+              </p>
+            </div>
+          </article>
+
+          <article class="skill award-card">
+            <div class="award-photo">
+              <img src="assets/images/mun-photo-3.jpg" alt="Model United Nations leadership and team experience" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <span class="photo-placeholder" style="display:none;">Add leadership photo</span>
+            </div>
+            <div class="award-content">
+              <div class="number">03 / LEADERSHIP</div>
+              <h3>Beyond the committee</h3>
+              <p>
+                My school MUN club recognized that involvement with its Leadership &amp; Dedication
+                award, reflecting the part of MUN I valued beyond individual conference results.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container statement">
+        <div class="big-quote">
+          Different positions.<br />
+          One room.<br />
+          <span>A system to navigate.</span>
+        </div>
+
+        <div class="statement-copy">
+          What I like about MUN is that the challenge is never purely individual.
+          You can prepare your own position, but once debate begins you have to react
+          to a changing system of people, incentives, rules, and ideas. That experience
+          has shaped how I approach collaboration and leadership outside the committee
+          room as well.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Tomas Navas · Model United Nations</span>
+      <a href="index.html#beyond-engineering">Return to portfolio →</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
